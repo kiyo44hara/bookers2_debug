@@ -52,13 +52,12 @@
             </td>
                 
           </table>
-          <table>
+          
               
-            <%= form_with model: [@book, @book_comment] do |f| %>
+            <%= form_with(model: [@book, @book_comment], local: true) do |f| %>
                 <%= f.text_area :comment, cols: '100', rows: '5', placeholder: "コメントしてください" %>
-                <%= f.submit "送信" %></br>
+                <%= f.submit "送信" %>
             <% end %>
-            </td>
           </table>
       </table>
     </div>
