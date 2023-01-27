@@ -3,18 +3,14 @@ class RelationshipsController < ApplicationController
   
   def create
     
-    following = current_user.relationships.build(followed_id:params[:user_id])
+    following = current_user.relationships.build(followed_id: params[:user_id])
     following.save
-    redirect_to request.referrer
+    redirect_to request.referrer || root_path
   end
   
   def destroy
-    following = current_user.relationships.fing_by(followed_id:params[:user_id])
+    _following = current_user.relationships.find_by(followed_id: params[:user_id])
   　following.destroy
-  　redirect_to request.referrer
+  　redirect_to request.referrer || root_path
   end
-  
-  private
-  # フォロー一覧ページとフォロワー一覧ページ用のコントローラを記述
-  
 end
