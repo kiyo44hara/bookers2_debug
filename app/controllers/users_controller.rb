@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def show
@@ -9,18 +10,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @users_f = User.where.not(id: current_user.id)
     @book = Book.new
-  end
-  
-  def followings
-    user = User.find(params[:id])
-    @usres = user.followings
-  end
-  
-  def followers
-    user = User.find(params[:id])
-    @users = user.followers
   end
 
   def edit
