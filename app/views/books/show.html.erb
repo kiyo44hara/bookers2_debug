@@ -9,7 +9,7 @@
     <div class='col-md-8 offset-md-1'>
   		<h2>Book detail</h2>
   		<table class='table'>
-  		  <tr>
+  		  <tr id="book_<%= book.id %>">
           <td><%= link_to(@book.user) do %>
             <%= image_tag @book.user.get_profile_image, size:"100x100" %><br>
             <%= @book.user.name %>
@@ -21,10 +21,9 @@
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
-            <td>コメント件数 : <%= @book.book_comments.count %></td>
-          <div id="btn_btn_<%= @book.id %>">
-            <td><%= render "favorites/btn", book: @book %></td>
-          </div>
+            <td class="comments-count">コメント件数 : <%= @book.book_comments.count %></td>
+            <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></td>
+          </tr>
           <table>
             <td>
               <% @book.book_comments.each do |book_comment| %>
@@ -33,16 +32,16 @@
                   <%= book_comment.comment %>
                   <% if book_comment.user == current_user %>
                     <%= link_to 'Destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-                  <% end %>  
+                  <% end %>
                   <%= link_to(book_comment.user) do %></br>
                   <%= book_comment.user.name %>
                   <% end %>
                </div>
               <% end %>
             </td>
-                
+
           </table>
-               
+
                 <%= render "book_comments/index", book: @book %>
                 <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
           </table>

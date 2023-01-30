@@ -9,17 +9,15 @@
   </thead>
   <tbody>
     <% books.each do |book| %>
-      <tr>
+      <tr id="book_<%= book.id %>">
         <td><%= link_to(book.user) do %>
-          <%= image_tag book.user.get_profile_image, size:'50x50' %>
-          <% end %>
+            <%= image_tag book.user.get_profile_image, size:'50x50' %>
+            <% end %>
         </td>
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
-        <td><%= link_to "#{book.book_comments.count}コメント", book_path(book.id) %></td>
-        <div id="btn_btn_<%= @book.id %>">
-        <td><%= render "favorites/btn", book: book %></td>
-        </div>
+        <td class="comments-count">コメント数: <%= book.book_comments.count %></td>
+        <td class="favorite-btn"><%= render "favorites/favorite-btn", book: book %></td>
       </tr>
     <% end %>
   </tbody>
