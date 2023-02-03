@@ -23,9 +23,10 @@
             <% end %>
             <td class="book-comments-counter">
             <%= render "book_comments/counter", book: @book %>
+            <td class="view_counts">閲覧数: <%= @book.view_counts.count %></td>
             <td class="favorite-btn"><%= render "favorites/favorite-btn", book: @book %></td>
-             </tr>
-             </table>
+        </tr>
+      </table>
           
               
                 <div class="book-comments-index">
