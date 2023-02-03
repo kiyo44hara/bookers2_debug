@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "home/about"=>"homes#about"
   get '/search', to: 'searches#search'
   
+  resources :groups, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  
   resources :chats, only: [:show, :create]
 
   resources :books, only: [:index,:show,:edit,:create,:destroy,:update]do
